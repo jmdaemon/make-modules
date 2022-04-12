@@ -38,20 +38,20 @@ lib: subprojects $(LIBRARY_DIR) $(LIB_DEPS) $(LIB)
 
 # Compile the shared library target
 # Depend upon logc and the library object files and the subproject object files
-$(LIB): $(LIB_OBJS)
+$(LIB): $(LIB_OBJS) $(SP_DEPENDS)
 	@echo "Linking library target"
-	$(CC) $(LIB_LDFLAGS) $(LIB_FLAGS) -o $@ $^
+	$(CC) $(LIB_LDFLAGS) $(LIB_FLAGS) $(SP_INCLUDES) -o $@ $^
 
 # Compile all library object files
 # Depends on the source files, headers and subproject object files
-$(LIB_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h
+$(LIB_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
 	@echo "Compiling library target sources"
-	$(CC) $(LIB_CFLAGS) -c $(LIB_FLAGS) -o $@ $<
+	$(CC) $(LIB_CFLAGS) -c $(LIB_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 # Depends on the source files, and subproject object files
-$(LIB_DEPS)/%.o: $(PATHS)/%.c
+$(LIB_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
 	@echo "Compiling main library target source"
-	$(CC) $(LIB_CFLAGS) -c $(LIB_FLAGS) -o $@ $<
+	$(CC) $(LIB_CFLAGS) -c $(LIB_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 $(LIBRARY_DIR):
 	$(MKDIR) $(LIBRARY_DIR)
