@@ -27,6 +27,13 @@ EXE 				= $(BINARY_DIR)/$(BINARY_NAME)
 
 .PHONY: install-bin uninstall-bin bin clean-bin
 
+# Install the binary
+install-bin: release $(EXE)
+	install $(EXE) $(DESTDIR)$(PREFIX)/bin/$(BINARY_NAME)
+
+uninstall-bin: release $(EXE)
+	$(CLEANUP) $(DESTDIR)$(PREFIX)/bin/$(BINARY_NAME)
+
 bin: subprojects $(BINARY_DIR) $(EXE_DEPS) $(EXE)
 
 # Link the executable binary target
