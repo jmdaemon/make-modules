@@ -20,7 +20,7 @@ SUB_LOG_C_SRC 			= $(SUBPROJECTS)/$(SUB_LOG_C_NAME)/src
 SUB_LOG_C_INCLUDES 	= -I$(SUB_LOG_C_SRC)
 
 # Setup
-.PHONY: logc
+.PHONY: logc clean-logc
 
 # Log.c Dependency
 SP_LOGC_DIR 	 = $(PATHD)/$(SUB_LOG_C_NAME)
@@ -45,3 +45,6 @@ $(SP_LOGC_OBJS): $(SP_LOGC_SRCS)
 $(SP_LOGC_DIR):
 	$(MKDIR) $(SP_LOGC_DIR)
 
+clean-logc:
+	@echo "Removing log.c build output"
+	$(CLEANUP) $(SP_LOGC_OBJS)
