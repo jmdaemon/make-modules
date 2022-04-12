@@ -9,6 +9,10 @@
 # 	include config.mk
 # 2. Use $(TARGET_DIR) and the $(TARGET_FLAGS) variables
 
+# Release / Debug compiler flags
+REL_CFLAGS = -O3 -DNDEBUG
+DBG_CFLAGS = -g -O0 -DDEBUG 
+
 # Build in release mode by default
 TARGET:=release
 TARGET_FLAGS:= $(REL_CFLAGS)
