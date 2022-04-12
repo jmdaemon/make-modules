@@ -22,6 +22,7 @@ SUB_TOML_SRC 	= $(SUB_TOML_DIR)
 SUB_TOML_INCLUDES = -I$(SUB_TOML_DIR)/include
 
 # Setup
+.PHONY: toml clean-toml
 
 # Tomlc99
 SP_TOML_DIR 	 = $(PATHD)/$(SUB_TOML_NAME)
@@ -45,3 +46,6 @@ $(SP_TOML_OBJS): $(SP_TOML_SRCS)
 $(SP_TOML_DIR):
 	$(MKDIR) $(SP_TOML_DIR)
 
+clean-toml:
+	@echo "Removing tomlc99 build output"
+	$(CLEANUP) $(SP_TOML_OBJS)
