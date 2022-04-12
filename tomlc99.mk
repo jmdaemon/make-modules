@@ -11,7 +11,7 @@
 # $(EXE_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
 #		@echo "Compiling main binary target source"
 #		$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
-# 5. Compile
+# 5. Run your make commands to build your targets
 
 # Variables
 SUB_TOML_NAME = tomlc99
