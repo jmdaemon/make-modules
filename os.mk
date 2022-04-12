@@ -2,6 +2,12 @@
 # Operating Systems
 #
 # Enable build system compatibility for other operating systems
+
+# Usage:
+# Add this line to the top of your Makefile:
+# 	include os.mk
+# Now you can use these variables at your discretion
+
 ifeq ($(OS),Windows_NT)
   ifeq ($(shell uname -s),) # not in a bash-like shell
 	CLEANUP = del /F /Q
