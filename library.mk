@@ -1,3 +1,17 @@
+# Usage:
+# Define the following variables:
+# - $(TARGET_DIR), $(TARGET_FLAGS)
+# - $(LIBRARY_SRCS), $(LIBRARY_OBJS), $(LIBRARY_NAME)
+# - $(PATHS)
+
+# This make module assumes the following:
+# Project Structure:
+# - build
+# - build/{debug, release}/lib
+# - build/{debug, release}/_lib_deps
+
+PREFIX_LIB = lib
+
 # Library build settings
 LIBRARY_DIR = $(TARGET_DIR)/$(PREFIX_LIB)
 LIB_DEPS 		= $(TARGET_DIR)/_$(PREFIX_LIB)_deps
