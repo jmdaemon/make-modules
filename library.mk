@@ -33,10 +33,10 @@ LIB 				= $(LIBRARY_DIR)/$(LIBRARY_NAME)
 .PHONY: install-lib uninstall-lib lib clean-lib
 
 # Install the library
-install-lib: $(LIB)
+install-lib: $(LIB) install-lib-headers
 	install $(LIB) $(DESTDIR)$(PREFIX)/lib/$(LIBRARY_NAME)
 
-uninstall-lib: release $(LIB)
+uninstall-lib: release $(LIB) uninstall-lib-headers
 	$(CLEANUP) $(DESTDIR)$(PREFIX)/lib/$(LIBRARY_NAME)
 
 lib: subprojects $(LIBRARY_DIR) $(LIB_DEPS) $(LIB)
