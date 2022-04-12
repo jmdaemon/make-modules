@@ -31,3 +31,12 @@ endif
 
 # Debug or Release target directory
 TARGET_DIR = $(PATHB)/$(TARGET)
+
+.PHONY: debug release
+
+# Toggle debug/release configurations with make debug TARGET
+debug:
+	@echo "Setting debug build options"
+
+release:
+	@echo "Setting release build options"
