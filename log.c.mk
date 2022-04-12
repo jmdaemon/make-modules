@@ -20,6 +20,7 @@ SUB_LOG_C_SRC 			= $(SUBPROJECTS)/$(SUB_LOG_C_NAME)/src
 SUB_LOG_C_INCLUDES 	= -I$(SUB_LOG_C_SRC)
 
 # Setup
+.PHONY: logc
 
 # Log.c Dependency
 SP_LOGC_DIR 	 = $(PATHD)/$(SUB_LOG_C_NAME)
