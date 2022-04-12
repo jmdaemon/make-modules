@@ -11,6 +11,8 @@
 # - build/{debug, release}/bin
 # - build/{debug, release}/_bin_deps
 
+PREFIX_BIN = bin
+
 # Executable settings
 BINARY_DIR 	= $(TARGET_DIR)/$(PREFIX_BIN)
 EXE_DEPS 		= $(TARGET_DIR)/_$(PREFIX_BIN)_deps
@@ -22,6 +24,8 @@ EXE 				= $(BINARY_DIR)/$(BINARY_NAME)
 #
 # Binary builds
 #
+
+.PHONY: install-bin uninstall-bin bin clean-bin
 
 bin: subprojects $(BINARY_DIR) $(EXE_DEPS) $(EXE)
 
