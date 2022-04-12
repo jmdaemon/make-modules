@@ -1,3 +1,16 @@
+# Usage:
+
+# Define the following variables:
+# - $(TARGET_DIR), $(TARGET_FLAGS)
+# - $(BINARY_SRCS), $(BINARY_OBJS), $(BINARY_NAME)
+# - $(PATHS)
+
+# This make module assumes the following:
+# Project Structure:
+# - build
+# - build/{debug, release}/bin
+# - build/{debug, release}/_bin_deps
+
 # Executable settings
 BINARY_DIR 	= $(TARGET_DIR)/$(PREFIX_BIN)
 EXE_DEPS 		= $(TARGET_DIR)/_$(PREFIX_BIN)_deps

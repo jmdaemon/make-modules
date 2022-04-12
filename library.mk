@@ -1,4 +1,5 @@
 # Usage:
+
 # Define the following variables:
 # - $(TARGET_DIR), $(TARGET_FLAGS)
 # - $(LIBRARY_SRCS), $(LIBRARY_OBJS), $(LIBRARY_NAME)
