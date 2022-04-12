@@ -11,6 +11,11 @@
 # - build/{debug, release}/lib
 # - build/{debug, release}/_lib_deps
 
+
+# Library compiler flags
+LIB_CFLAGS = -fPIC
+LIB_LDFLAGS = -shared
+
 PREFIX_LIB = lib
 
 # Library build settings
