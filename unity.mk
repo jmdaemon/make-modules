@@ -17,7 +17,7 @@ SRCT = $(wildcard $(PATHT)/*.c)
 # -MG : Run without being able to run into headers gcc can't find
 # -MF : Write header dependencies to a file
 TEST_COMPILE=gcc -c
-TEST_LINK=gcc
+TEST_LINK=gcc $(GLOBAL_LDFLAGS)
 TEST_DEPEND=gcc -MM -MG -MF
 TEST_CFLAGS= $(GLOBAL_CFLAGS) $(INCLUDES) -I$(PATHU) -I$(PATHS) -DTEST
 
