@@ -24,9 +24,9 @@ TEST_CFLAGS= $(GLOBAL_CFLAGS) $(INCLUDES) -I$(PATHU) -I$(PATHS) -DTEST
 # Due to these substitutions they must be named like this
 # in order for the tests to work and compile
 RESULTS = $(patsubst $(PATHT)/test_%.c,$(PATHR)/test_%.txt,$(SRCT) )
-PASSED = `grep -s PASS $(PATHR)*.txt`
-FAIL = `grep -s FAIL $(PATHR)*.txt`
-IGNORE = `grep -s IGNORE $(PATHR)*.txt`
+PASSED = `grep -s PASS $(PATHR)/*.txt`
+FAIL = `grep -s FAIL $(PATHR)/*.txt`
+IGNORE = `grep -s IGNORE $(PATHR)/*.txt`
 
 # Unit Test Rules
 
