@@ -14,10 +14,15 @@
 # - build/{debug, release}/lib/
 # - build/{debug, release}/bin/
 
+# Directories
+
 PATHS = src
 PATHT = test
 PATHB = build
 PATHI = include
 
-SUBPROJECTS = subprojects
+PATHD = $(PATHB)/depends
+PATHO = $(PATHB)/objs
+PATHR = $(PATHB)/results
 
+SUBPROJECTS = subprojects

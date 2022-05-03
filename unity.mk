@@ -2,11 +2,8 @@
 # Unit Testing
 #
 
-# Unit Testing Directories
+# Unity Source Directory
 PATHU = subprojects/unity/src
-PATHD = $(PATHB)/depends
-PATHO = $(PATHB)/objs
-PATHR = $(PATHB)/results
 
 BUILD_PATHS = $(PATHB) $(PATHD) $(PATHO) $(PATHR)
 
@@ -35,7 +32,7 @@ IGNORE = `grep -s IGNORE $(PATHR)*.txt`
 
 .PHONY: test clean-test
 
-test: $(BUILD_PATHS) $(RESULTS)
+test: $(BUILD_PATHS) $(RESULTS) $(SP_DEPENDS)
 	@echo "-----------------------\nIGNORES:\n-----------------------"
 	@echo "$(IGNORE)"
 	@echo "-----------------------\nFAILURES:\n-----------------------"
@@ -55,19 +52,19 @@ $(PATHB)/test_%.$(TARGET_EXTENSION): $(PATHO)/test_%.o $(PATHO)/%.o $(PATHU)/uni
 	$(TEST_LINK) $(SP_INCLUDES) $(TEST_CFLAGS) -o $@ $^
 
 # Compile unity sources
-$(PATHO)/%.o:: $(PATHU)/%.c $(PATHU)/%.h $(SP_DEPENDS)
+$(PATHO)/%.o:: $(PATHU)/%.c $(PATHU)/%.h $(SP_SOURCES)
 	$(TEST_COMPILE) $(TEST_CFLAGS) $(SP_INCLUDES) $< -o $@
 
 # Compile files in src directory
-$(PATHO)/%.o:: $(PATHS)/%.c $(SP_DEPENDS)
+$(PATHO)/%.o:: $(PATHS)/%.c $(SP_SOURCES)
 	$(TEST_COMPILE) $(TEST_CFLAGS) $(GLOBAL_LDFLAGS) $(SP_INCLUDES) $< -o $@
 
 # Compile files in test directory
-$(PATHO)/%.o:: $(PATHT)/%.c $(SP_DEPENDS)
+$(PATHO)/%.o:: $(PATHT)/%.c $(SP_SOURCES)
 	$(TEST_COMPILE) $(TEST_CFLAGS) $(GLOBAL_LDFLAGS) $(SP_INCLUDES) $< -o $@
 
 # Create a depends directory
-$(PATHD)/%.d:: $(PATHT)/%.c $(SP_DEPENDS) $(SP_INCLUDES)
+$(PATHD)/%.d:: $(PATHT)/%.c $(SP_SOURCES) $(SP_INCLUDES)
 	$(TEST_DEPEND) $@ $<
 
 #
