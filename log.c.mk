@@ -40,7 +40,7 @@ logc: $(SP_LOGC_DIR) $(SP_LOGC_OBJS)
 # Depend on the log.c source
 # Note that we build it with -fPIC since we include it in our library
 $(SP_LOGC_OBJS): $(SP_LOGC_SRCS)
-	$(CC) -c $(LIB_CFLAGS) $(SP_LOGC_CFLAGS) -o $@ $^
+	$(CC) -c $(LIB_CFLAGS) $(SP_LOGC_CFLAGS) $(LOGC_FLAGS) -o $@ $^
 
 $(SP_LOGC_DIR):
 	$(MKDIR) $(SP_LOGC_DIR)
