@@ -13,10 +13,16 @@ ifeq ($(OS),Windows_NT)
 	CLEANUP = del /F /Q
 	MKDIR = mkdir
 	COPY = Xcopy /E /I
+	REP_VMA = (Get-Content $(VS_OBJ)) -replace '@CMAKE_PROJECT_VERSION_MAJOR@', '$(VERSION_MAJOR)' | Out-File -encoding ASCII $(VS_OBJ)
+	REP_VMI = (Get-Content $(VS_OBJ)) -replace '@CMAKE_PROJECT_VERSION_MINOR@', '$(VERSION_MINOR)' | Out-File -encoding ASCII $(VS_OBJ)
+	REP_PAT = (Get-Content $(VS_OBJ)) -replace '@CMAKE_PROJECT_VERSION_PATCH@', '$(VERSION_PATCH)' | Out-File -encoding ASCII $(VS_OBJ)
   else # in a bash-like shell, like msys
 	CLEANUP = rm -f
 	MKDIR = mkdir -p
 	COPY = cp -rf
+	REP_VMA = sed -i "s/@CMAKE_PROJECT_VERSION_MAJOR@/$(VERSION_MAJOR)/g" $(VS_OBJ)
+	REP_VMI = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
+	REP_PAT = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
   endif
 	TARGET_EXTENSION=exe
 	SHARED_LIBRARY_EXT=dll
@@ -25,6 +31,9 @@ else
 	CLEANUP = rm -f
 	MKDIR = mkdir -p
 	COPY = cp -rf
+	REP_VMA = sed -i "s/@CMAKE_PROJECT_VERSION_MAJOR@/$(VERSION_MAJOR)/g" $(VS_OBJ)
+	REP_VMI = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
+	REP_PAT = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
 	TARGET_EXTENSION=out
 	SHARED_LIBRARY_EXT=so
 	STATIC_LIBRARY_EXT=a
