@@ -49,7 +49,7 @@ $(EXE_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
 	$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 # Depend on the binary's source files
-$(EXE_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
+$(EXE_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
 	@echo "Compiling main binary target source"
 	$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
 

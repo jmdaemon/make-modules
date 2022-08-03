@@ -54,7 +54,7 @@ $(LIB_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
 	$(CC) $(LIB_CFLAGS) -c $(LIB_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 # Depends on the source files, and subproject object files
-$(LIB_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
+$(LIB_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
 	@echo "Compiling main library target source"
 	$(CC) $(LIB_CFLAGS) -c $(LIB_FLAGS) $(SP_INCLUDES) -o $@ $<
 
