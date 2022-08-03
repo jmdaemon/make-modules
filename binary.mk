@@ -34,7 +34,7 @@ install-bin: release $(EXE)
 uninstall-bin: release $(EXE)
 	$(CLEANUP) $(DESTDIR)$(PREFIX)/bin/$(BINARY_NAME)
 
-bin: subprojects $(BINARY_DIR) $(EXE_DEPS) $(EXE)
+bin: subprojects version $(BINARY_DIR) $(EXE_DEPS) $(EXE)
 
 # Link the executable binary target
 # Depend on our binary's object files and logc
