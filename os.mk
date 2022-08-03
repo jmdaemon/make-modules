@@ -16,10 +16,12 @@ ifeq ($(OS),Windows_NT)
 	REP_VMA = (Get-Content $(VS_OBJ)) -replace '@CMAKE_PROJECT_VERSION_MAJOR@', '$(VERSION_MAJOR)' | Out-File -encoding ASCII $(VS_OBJ)
 	REP_VMI = (Get-Content $(VS_OBJ)) -replace '@CMAKE_PROJECT_VERSION_MINOR@', '$(VERSION_MINOR)' | Out-File -encoding ASCII $(VS_OBJ)
 	REP_PAT = (Get-Content $(VS_OBJ)) -replace '@CMAKE_PROJECT_VERSION_PATCH@', '$(VERSION_PATCH)' | Out-File -encoding ASCII $(VS_OBJ)
+	RMDIR = rd /s /q # Command-Prompt friendly
   else # in a bash-like shell, like msys
 	CLEANUP = rm -f
 	MKDIR = mkdir -p
 	COPY = cp -rf
+	RMDIR = rm -rf
 	REP_VMA = sed -i "s/@CMAKE_PROJECT_VERSION_MAJOR@/$(VERSION_MAJOR)/g" $(VS_OBJ)
 	REP_VMI = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
 	REP_PAT = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
@@ -31,6 +33,7 @@ else
 	CLEANUP = rm -f
 	MKDIR = mkdir -p
 	COPY = cp -rf
+	RMDIR = rm -rf
 	REP_VMA = sed -i "s/@CMAKE_PROJECT_VERSION_MAJOR@/$(VERSION_MAJOR)/g" $(VS_OBJ)
 	REP_VMI = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
 	REP_PAT = sed -i "s/@CMAKE_PROJECT_VERSION_MINOR@/$(VERSION_MINOR)/g" $(VS_OBJ)
