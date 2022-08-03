@@ -12,3 +12,6 @@ $(VS_OBJ): $(VS_SRC) Makefile
 	$(REP_VMA)
 	$(REP_VMI)
 	$(REP_PAT)
+
+clean-ver:
+	$(CLEANUP) $(VS_OBJ)
