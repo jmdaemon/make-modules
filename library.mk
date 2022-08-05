@@ -39,7 +39,7 @@ install-lib: $(LIB) install-lib-headers
 uninstall-lib: release $(LIB) uninstall-lib-headers
 	$(CLEANUP) $(DESTDIR)$(PREFIX)/lib/$(LIBRARY_NAME)
 
-lib: subprojects version $(LIBRARY_DIR) $(LIB_DEPS) $(LIB)
+lib: subprojects $(LIBRARY_DIR) $(LIB_DEPS) $(LIB)
 
 # Compile the shared library target
 # Depend upon logc and the library object files and the subproject object files
