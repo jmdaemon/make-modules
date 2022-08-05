@@ -8,7 +8,7 @@ DOC_OBJ = $(DOC_HTML)/$(DOC_SRC)
 
 docs: $(DOC_OBJ)
 
-$(DOC_OBJ): $(EXE_DEPS)/*.o $(PATHS)/*.c $(PATHI)/*.h
+$(DOC_OBJ): $(EXE_DEPS)/*.o $(PATHS)/*.c $(PATHI)/*.h Doxyfile
 	@echo Building Docs
 	@doxygen
 
