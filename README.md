@@ -33,3 +33,24 @@ LIBRARY_SRCS = $(BINARY_SRCS)
 LIBRARY_OBJS = $(LIBRARY_SRCS:.c=.o)
 LIBRARY_NAME = libmain.$(SHARED_LIBRARY_EXT)
 ```
+
+## Using Library Modules
+
+To include a library module:
+
+1. Define SP_DEPENDS, SP_INCLUDES
+2. Include this make module:
+    ``` make
+      include log.c.mk
+    ```
+3. Add $(SP_DEPENDS) to your link target:
+    ``` make
+    bin: $(SP_DEPENDS)
+    ```
+4. Add `$(SP_INCLUDES)` headers to your targets:
+    ``` make
+    $(EXE_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
+        @echo "Compiling main binary target source"
+        $(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
+    ```
+5. Run your make commands to build your targets
