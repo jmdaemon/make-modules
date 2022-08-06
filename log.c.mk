@@ -30,21 +30,17 @@ SP_LIBS 		+= $(SP_SHARED)
 # Create the directory, object files, dynamic & static libraries
 $(SP_TARGET_NAME): $(SP_BDIR) $(SP_BOBJS) $(SP_SHARED) $(SP_STATIC)
 
-# Compiles and builds build/depends/log.c/log.o, depends on subproject srcs
-#$(SP_BOBJS): $(SP_BSRCS) $(SP_INCS)/*.h
-#$(SP_BOBJS)/%.o: $(SP_BSRCS) $(SP_INCS)/%.o
-#$(SP_BOBJS): $(SP_BSRCS) $(SP_INCS)/%.o
-#$(SP_BOBJS)/%.o: $(SP_BSRCS)/%.c $(SP_INCS)/%.o
+# Compiles and builds build/depends/log.c/log.o, depends on subproject srcs and headers
 $(SP_BOBJS): $(SP_BSRCS) $(SP_INCS:.h)
 	@echo "Compiling $(SP_NAME) sources"
 	$(CC) -c -fPIC $(TARGET_FLAGS) $(LOGC_FLAGS) -o $@ $^
 
-# Links and creates dynamic library in build/depends/log.c/liblog.so
+# Links and creates dynamic library: build/depends/$(SP_NAME)/$(SP_SHARED)
 $(SP_SHARED): $(SP_BOBJS)
 	@echo "Creating $(SP_NAME) shared library"
 	$(CC) -shared $(SP_INCS) -o $@ $^
 
-# Links and creates static library in build/depends/log.c/liblog.so
+# Links and creates static library: build/depends/$(SP_NAME)/$(SP_SHARED)
 $(SP_STATIC): $(SP_BOBJS)
 	@echo "Creating $(SP_NAME) static library"
 	ar rcs $@ $^
@@ -58,5 +54,6 @@ clean-$(SP_TARGET_NAME):
 	@echo "Removing $(SP_NAME) build output"
 	$(CLEANUP) $(SP_BOBJS)
 
-# TODO: Add clean rule to master clean rule
-# TODO: Add clean rule to clean-subprojects
+# Add clean rule to master, subproject clean targets
+CLEAN_TARGET 		+= clean-$(SP_TARGET_NAME)
+CLEAN_SP_TARGET += clean-$(SP_TARGET_NAME)
