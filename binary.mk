@@ -38,20 +38,21 @@ bin: subprojects version $(BINARY_DIR) $(EXE_DEPS) $(EXE)
 
 # Link the executable binary target
 # Depend on our binary's object files and logc
-$(EXE): $(EXE_OBJS) $(SP_DEPENDS)
+#$(EXE): $(EXE_OBJS) $(SP_DEPENDS)
+$(EXE): $(EXE_OBJS)
 	@echo "Linking binary target"
-	$(CC) $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $^
+	$(CC) $(SP_LIBS) $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $^
 
 # Compile all $(EXE_OBJS) object files
 # Depend on the binary's source files and the headers
 $(EXE_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
 	@echo "Compiling binary target sources"
-	$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
+	$(CC) -c $(SP_LIBS) $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 # Depend on the binary's source files
 $(EXE_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
 	@echo "Compiling main binary target source"
-	$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
+	$(CC) -c $(SP_LIBS) $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 $(BINARY_DIR):
 	$(MKDIR) $(BINARY_DIR)
