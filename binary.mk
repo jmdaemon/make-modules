@@ -47,12 +47,12 @@ $(EXE): $(EXE_OBJS)
 # Depend on the binary's source files and the headers
 $(EXE_DEPS)/%.o: $(PATHS)/%.c $(PATHI)/%.h $(SP_DEPENDS)
 	@echo "Compiling binary target sources"
-	$(CC) -c $(SP_LIBS) $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
+	$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 # Depend on the binary's source files
 $(EXE_DEPS)/%.o: $(PATHS)/%.c $(SP_DEPENDS)
 	@echo "Compiling main binary target source"
-	$(CC) -c $(SP_LIBS) $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
+	$(CC) -c $(EXE_FLAGS) $(SP_INCLUDES) -o $@ $<
 
 $(BINARY_DIR):
 	$(MKDIR) $(BINARY_DIR)
