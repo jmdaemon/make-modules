@@ -11,8 +11,8 @@ SP_BCFLAGS_$(1) = $(SP_INCS_$(1))
 # Add to subprojects
 SP_SOURCES 	+= $$(SP_BSRCS_$(1))
 SP_DEPENDS 	+= $$(SP_BOBJS_$(1))
-SP_INCLUDES += $$(SP_INCS_$(1))
-SP_LIBS 		+= $$(SP_SHARED_$(1))
+SP_INCLUDES += $(SP_INCS_$(1))
+SP_LIBS 		+= $(SP_SHARED_$(1))
 
 # Create the directory, object files, dynamic & static libraries
 $(SP_TARGET_NAME_$(1)): $$(SP_BDIR_$(1)) $$(SP_BOBJS_$(1)) $(SP_SHARED_$(1)) $(SP_STATIC_$(1))
@@ -39,7 +39,7 @@ $(SP_STATIC_$(1)): $$(SP_BOBJS_$(1))
 
 # Make build directory
 $$(SP_BDIR_$(1)):
-	$(MKDIR) $$(SP_BDIR_$(1))
+	$$(MKDIR) $$(SP_BDIR_$(1))
 
 # Create clean target
 clean-$(SP_TARGET_NAME_$(1)):
