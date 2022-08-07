@@ -9,8 +9,8 @@ SP_INCS 		= -I$(SP_SRCD)
 
 # Build dynamic, static libraries
 SP_LIB_NAME 	= logc
-SP_SHARED 		= $(SP_SRCD)/lib$(SP_LIB_NAME).so
-SP_STATIC 		= $(SP_SRCD)/lib$(SP_LIB_NAME).a
+SP_SHARED 		= $(SP_BDIR)/lib$(SP_LIB_NAME).so
+SP_STATIC 		= $(SP_BDIR)/lib$(SP_LIB_NAME).a
 
 # Builds subproject
 include make/subproject.mk
