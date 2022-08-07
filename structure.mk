@@ -16,13 +16,13 @@
 
 # Directories
 
-PATHS = src
-PATHT = test
-PATHB = build
-PATHI = include
+PATHS := src
+PATHT := test
+PATHB := build
+PATHI := include
 
-PATHD = $(PATHB)/depends
-PATHO = $(PATHB)/objs
-PATHR = $(PATHB)/results
+PATHD := $(PATHB)/depends
+PATHO := $(PATHB)/objs
+PATHR := $(PATHB)/results
 
-SUBPROJECTS = subprojects
+SUBPROJECTS := subprojects

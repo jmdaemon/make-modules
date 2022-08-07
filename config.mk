@@ -10,8 +10,8 @@
 # 2. Use $(TARGET_DIR) and the $(TARGET_FLAGS) variables
 
 # Release / Debug compiler flags
-REL_CFLAGS = -O3 -DNDEBUG
-DBG_CFLAGS = -g -O0 -DDEBUG 
+REL_CFLAGS := -O3 -DNDEBUG
+DBG_CFLAGS := -g -O0 -DDEBUG 
 
 # Build in release mode by default
 TARGET:=release
@@ -19,18 +19,18 @@ TARGET_FLAGS:= $(REL_CFLAGS)
 
 # Release settings
 ifeq ($(filter release,$(MAKECMDGOALS)),release)
-TARGET = release
-TARGET_FLAGS = $(REL_CFLAGS)
+TARGET := release
+TARGET_FLAGS := $(REL_CFLAGS)
 endif
 
 # Debug build settings
 ifeq ($(filter debug,$(MAKECMDGOALS)),debug)
-TARGET = debug
-TARGET_FLAGS = $(DBG_CFLAGS)
+TARGET := debug
+TARGET_FLAGS := $(DBG_CFLAGS)
 endif
 
 # Debug or Release target directory
-TARGET_DIR = $(PATHB)/$(TARGET)
+TARGET_DIR := $(PATHB)/$(TARGET)
 
 .PHONY: debug release
 
