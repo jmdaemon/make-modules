@@ -61,7 +61,7 @@ $(EXE_DEPS):
 	$(MKDIR) $(EXE_DEPS)
 
 # Remove output files for executables
-clean-bin: clean-objs
+clean-bin: 
 	@echo "Removing binary build output"
 	$(CLEANUP) $(PATHB)/debug/bin/$(BINARY_NAME) $(PATHB)/release/bin/$(BINARY_NAME)
 	$(CLEANUP) $(PATHB)/debug/_$(PREFIX_BIN)_deps/*.o $(PATHB)/release/_$(PREFIX_BIN)_deps/*.o
