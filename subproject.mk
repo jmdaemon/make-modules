@@ -2,8 +2,6 @@ define subproject_template
 
 .PHONY: $(SP_TARGET_NAME_$(1)) clean-$(SP_TARGET_NAME_$(1))
 
-$(info $(SP_TARGET_NAME_$(1)))
-
 # SP_LOGC_DIR: Outputs build dependencies to build/{debug,release}/depends/subproject_name
 SP_BDIR_$(1) 	 	= $(TARGET_DIR)/depends/$(SP_NAME_$(1))
 SP_BSRCS_$(1) 	= $(addprefix $(SP_SRCD_$(1))/, $(SP_SRCS_$(1)))
