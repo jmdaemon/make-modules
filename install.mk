@@ -6,6 +6,9 @@ endif
 # Installs both debug and release candidate
 # for a binary and library
 
+USR_INCLUDE := $(DESTDIR)$(PREFIX)/include
+USR_LIB 		:= $(DESTDIR)$(PREFIX)/lib
+
 #
 # Install / Uninstall
 #
