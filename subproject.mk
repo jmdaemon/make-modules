@@ -1,10 +1,5 @@
 define subproject_template
 
-#.PHONY: $(SP_TARGET_NAME_$(1)) install-$(SP_TARGET_NAME_$(1)) uninstall-$(SP_TARGET_NAME_$(1)) clean-$(SP_TARGET_NAME_$(1))
-#.PHONY: $(SP_TARGET_NAME_$(1)) install-$(SP_TARGET_NAME_$(1))-headers uninstall-$(SP_TARGET_NAME_$(1))-headers clean-$(SP_TARGET_NAME_$(1))
-#.PHONY: $(SP_TARGET_NAME_$(1)) clean-$(SP_TARGET_NAME_$(1))
-
-
 .PHONY: $(SP_TARGET_NAME_$(1)) install-$(SP_TARGET_NAME_$(1))-headers uninstall-$(SP_TARGET_NAME_$(1))-headers clean-$(SP_TARGET_NAME_$(1))
 
 # SP_LOGC_DIR: Outputs build dependencies to build/{debug,release}/depends/subproject_name
@@ -15,22 +10,20 @@ SP_BCFLAGS_$(1) = $(SP_FLAGS_$(1)) $(SP_INCS_$(1))
 
 # Subproject headers
 
-#ifeq($(SP_HDRD_$(1)),)
-#SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(SP_HDRS_$(1)))
-#else
-#SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1)))
-#endif
-
-#$(if ifeq $(SP_HDRD_$(1)) "", \
-#SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(SP_HDRS_$(1))), \
-#SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1))))
-
-
+ifneq ($(SP_HDRD_$(1)),)
 SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1)))
-SP_LIB_HDR_DEST = $(DESTDIR)$(PREFIX)/include/
-#SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(LIBRARY_HDRS))
-#SP_LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(LIBRARY_HDRS)
-SP_LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(SP_HDRS_$(1))
+else
+SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(SP_HDRS_$(1)))
+endif
+
+#$(if ifneq $(SP_HDRD_$(1)),\
+#SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1))),\
+#SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(SP_HDRS_$(1))))
+
+#SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1)))
+#SP_LIB_HDR_DEST = $(DESTDIR)$(PREFIX)/include/
+#SP_LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(SP_HDRS_$(1))
+SP_LIB_HDR_OUTS = $(USR_INCLUDE)/$(SP_HDRS_$(1))
 
 # Add to subprojects
 SP_SOURCES 	+= $$(SP_BSRCS_$(1))
@@ -56,17 +49,8 @@ uninstall-$(SP_TARGET_NAME_$(1)): $(SP_SHARED_$(1)) $(SP_STATIC_$(1)) uninstall-
 # Install the library headers
 install-$(SP_TARGET_NAME_$(1))-headers: $$(SP_LIB_HDR_OUTS)
 
-#$$(SP_LIB_HDR_DEST)/%.h: $()/%.h
-#$(DESTDIR)$(PREFIX)/include/%.h: $(PATHI)/%.h
-#$$(USR_INCLUDE)/%.h: $(PATHI)/%.h
-#SP_LIB_HDR_DEST/%.h
-#$$(USR_INCLUDE)/%.h: $$(PATHI)/%.h
-#$(USR_INCLUDE)/%.h: $(PATHI)/%.h
-#$(DESTDIR)$(PREFIX)/include/%.h: $(PATHI)/%.h
-
 $(USR_INCLUDE)/%.h: $(SP_HDRD_$(1))/%.h
 	install $$^ $$@
-
 
 uninstall-$(SP_TARGET_NAME_$(1))-headers: $$(SP_LIB_HDR_OUTS)
 	$$(CLEANUP) $$^

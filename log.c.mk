@@ -7,7 +7,6 @@ SP_OBJS_logc 				= $(SP_SRCS_$(1):.c=.o)
 SP_INCS_logc 				= -I$(SP_SRCD_$(1))
 SP_HDRS_logc 				= log.h
 SP_HDRD_logc				= $(SP_SRCD_logc)
-#SP_HDRD_logc				= src
 
 # Build dynamic, static libraries
 SP_LIB_NAME_logc 		= logc
