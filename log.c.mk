@@ -10,5 +10,5 @@ SP_HDRD_logc				= $(SP_SRCD_logc)
 
 # Build dynamic, static libraries
 SP_LIB_NAME_logc 		= logc
-SP_SHARED_logc 			= $$(SP_BDIR_$(1))/lib$(SP_LIB_NAME_$(1)).so
-SP_STATIC_logc 			= $$(SP_BDIR_$(1))/lib$(SP_LIB_NAME_$(1)).a
+$(eval $(call shared_lib_tmpl,$(SP_LIB_NAME_logc)))
+$(eval $(call static_lib_tmpl,$(SP_LIB_NAME_logc)))
