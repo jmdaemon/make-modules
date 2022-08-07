@@ -35,10 +35,6 @@ LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(LIBRARY_HDRS)
 # Library builds
 #
 
-#.PHONY:install-lib install-lib-headers
-#.PHONY:install-lib-headers \
-	#uninstall-lib-headers \
-	#lib clean-lib
 .PHONY: lib clean-lib install-lib-headers uninstall-lib-headers
 
 # Install the library
@@ -50,21 +46,13 @@ uninstall-lib: uninstall-subprojects $(LIB) uninstall-lib-headers
 
 # Install library headers
 install-lib-headers: $(LIB_HDR_OUTS)
-#install-lib-headers: $(LIB_HDR_DEST)/%.h $(LIB_HDR_SRCS)
-#install-lib-headers: $(LIB_HDR_OUTS)
-#install-lib-headers: $(LIB_HDR_OUTS)
 
 # Note this does not handle subdirectories in include
 # or subdirectories in /usr/include/libheader.h
 
-#$(LIB_HDR_SRCS)/%.h:
-#$(DESTDIR)$(PREFIX)/include/%.h: $(LIB_HDR_SRCS)
-#$(LIB_HDR_DEST)/%.h: $(LIB_HDR_SRCS)
-#$(LIB_HDR_DEST)/%.h: $(PATHI)/%.h
 $(LIB_HDR_DEST)/%.h: $(PATHI)/%.h
 	install $^ $@
 
-#uninstall-lib-headers: $(LIB_HDR_DEST)/%.h
 uninstall-lib-headers: $(LIB_HDR_OUTS)
 	$(CLEANUP) $^
 
