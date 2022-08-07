@@ -65,3 +65,5 @@ clean-bin: clean-objs
 	@echo "Removing binary build output"
 	$(CLEANUP) $(PATHB)/debug/bin/$(BINARY_NAME) $(PATHB)/release/bin/$(BINARY_NAME)
 	$(CLEANUP) $(PATHB)/debug/_$(PREFIX_BIN)_deps/*.o $(PATHB)/release/_$(PREFIX_BIN)_deps/*.o
+
+CLEAN_TARGET += clean-bin
