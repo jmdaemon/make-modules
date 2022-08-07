@@ -28,8 +28,7 @@ LIB 				= $(LIBRARY_DIR)/$(LIBRARY_NAME)
 
 # Library Headers
 LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(LIBRARY_HDRS))
-LIB_HDR_DEST = $(DESTDIR)$(PREFIX)/include/
-LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(LIBRARY_HDRS)
+LIB_HDR_OUTS = $(addprefix $(USR_INCLUDE)/, $(LIBRARY_HDRS))
 
 #
 # Library builds
@@ -39,10 +38,10 @@ LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(LIBRARY_HDRS)
 
 # Install the library
 install-lib: install-subprojects $(LIB) install-lib-headers
-	install $(LIB) $(DESTDIR)$(PREFIX)/lib/$(LIBRARY_NAME)
+	install $(LIB) $(USR_LIB)/$(LIBRARY_NAME)
 
 uninstall-lib: uninstall-subprojects $(LIB) uninstall-lib-headers
-	$(CLEANUP) $(DESTDIR)$(PREFIX)/lib/$(LIBRARY_NAME)
+	$(CLEANUP) $(USR_LIB)/$(LIBRARY_NAME)
 
 # Install library headers
 install-lib-headers: $(LIB_HDR_OUTS)
@@ -50,7 +49,7 @@ install-lib-headers: $(LIB_HDR_OUTS)
 # Note this does not handle subdirectories in include
 # or subdirectories in /usr/include/libheader.h
 
-$(LIB_HDR_DEST)/%.h: $(PATHI)/%.h
+$(USR_INCLUDE)/%.h: $(PATHI)/%.h
 	install $^ $@
 
 uninstall-lib-headers: $(LIB_HDR_OUTS)
