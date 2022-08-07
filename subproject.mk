@@ -11,19 +11,16 @@ SP_BCFLAGS_$(1) = $(SP_FLAGS_$(1)) $(SP_INCS_$(1))
 # Subproject headers
 
 ifneq ($(SP_HDRD_$(1)),)
-SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1)))
+SP_LIB_INCLUDES_$(1) = $(SP_HDRD_$(1))
+SP_LIB_HDR_SRCS_$(1) = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1)))
+#SP_LIB_HDR_OUTS_$(1) = $(USR_INCLUDE)/$(SP_HDRS_$(1))
 else
-SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(SP_HDRS_$(1)))
+SP_LIB_INCLUDES_$(1) = $(PATHI)
+SP_LIB_HDR_SRCS_$(1) = $(addprefix $(PATHI)/, $(SP_HDRS_$(1)))
+#SP_LIB_HDR_OUTS_$(1) = $(addprefix $(USR_INCLUDE)/, $(PATHI_$(1)))
 endif
 
-#$(if ifneq $(SP_HDRD_$(1)),\
-#SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1))),\
-#SP_LIB_HDR_SRCS = $(addprefix $(PATHI)/, $(SP_HDRS_$(1))))
-
-#SP_LIB_HDR_SRCS = $(addprefix $(SP_HDRD_$(1))/, $(SP_HDRS_$(1)))
-#SP_LIB_HDR_DEST = $(DESTDIR)$(PREFIX)/include/
-#SP_LIB_HDR_OUTS = $(DESTDIR)$(PREFIX)/include/$(SP_HDRS_$(1))
-SP_LIB_HDR_OUTS = $(USR_INCLUDE)/$(SP_HDRS_$(1))
+SP_LIB_HDR_OUTS_$(1) = $(addprefix $(USR_INCLUDE)/, $(SP_HDRS_$(1)))
 
 # Add to subprojects
 SP_SOURCES 	+= $$(SP_BSRCS_$(1))
@@ -47,12 +44,12 @@ uninstall-$(SP_TARGET_NAME_$(1)): $(SP_SHARED_$(1)) $(SP_STATIC_$(1)) uninstall-
 	$$(CLEANUP) $$(DESTDIR)$$(PREFIX)/lib/lib$(SP_LIB_NAME_$(1)).a
 
 # Install the library headers
-install-$(SP_TARGET_NAME_$(1))-headers: $$(SP_LIB_HDR_OUTS)
+install-$(SP_TARGET_NAME_$(1))-headers: $$(SP_LIB_HDR_OUTS_$(1))
 
-$(USR_INCLUDE)/%.h: $(SP_HDRD_$(1))/%.h
+$(USR_INCLUDE)/%.h: $$(SP_LIB_INCLUDES_$(1))/%.h
 	install $$^ $$@
 
-uninstall-$(SP_TARGET_NAME_$(1))-headers: $$(SP_LIB_HDR_OUTS)
+uninstall-$(SP_TARGET_NAME_$(1))-headers: $$(SP_LIB_HDR_OUTS_$(1))
 	$$(CLEANUP) $$^
 
 # Create the directory, object files, dynamic & static libraries
