@@ -15,3 +15,5 @@ $(VS_OBJ): $(VS_SRC) Makefile
 
 clean-ver:
 	$(CLEANUP) $(VS_OBJ)
+	
+CLEAN_TARGET += clean-ver

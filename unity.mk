@@ -96,3 +96,4 @@ clean-test:
 .PRECIOUS: $(PATHO)/%.o
 .PRECIOUS: $(PATHR)/%.txt
 
+CLEAN_TARGET += clean-test

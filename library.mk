@@ -69,3 +69,5 @@ clean-lib:
 	@echo "Removing library build output"
 	$(CLEANUP) $(PATHB)/debug/lib/$(LIBRARY_NAME) $(PATHB)/release/lib/$(LIBRARY_NAME)
 	$(CLEANUP) $(PATHB)/debug/_$(PREFIX_LIB)_deps/*.o $(PATHB)/release/_$(PREFIX_LIB)_deps/*.o
+
+CLEAN_TARGET += clean-lib
