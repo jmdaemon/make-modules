@@ -64,7 +64,8 @@ install-lib-headers: $(LIB_HDR_OUTS)
 $(LIB_HDR_DEST)/%.h: $(PATHI)/%.h
 	install $^ $@
 
-uninstall-lib-headers: $(LIB_HDR_DEST)/%.h
+#uninstall-lib-headers: $(LIB_HDR_DEST)/%.h
+uninstall-lib-headers: $(LIB_HDR_OUTS)
 	$(CLEANUP) $^
 
 lib: subprojects $(LIBRARY_DIR) $(LIB_DEPS) $(LIB)
