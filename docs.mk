@@ -14,3 +14,5 @@ $(DOC_OBJ): $(EXE_DEPS)/*.o $(PATHS)/*.c $(PATHI)/*.h Doxyfile
 
 clean-docs:
 	$(RMDIR) build/docs
+
+CLEAN_TARGET += clean-docs
