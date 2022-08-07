@@ -10,5 +10,7 @@ SP_HDRD_tomlc99					= $(SUBPROJECTS)/$(SP_NAME_$(1))
 
 # Build dynamic, static libraries
 SP_LIB_NAME_tomlc99 		= tomlc99
-$(eval $($(call shared_lib_tmpl,$(SP_LIB_NAME_tomlc99))))
-$(eval $($(call static_lib_tmpl,$(SP_LIB_NAME_tomlc99))))
+SP_SHARED_tomlc99 			= $$(SP_BDIR_$(1))/lib$(SP_LIB_NAME_$(1)).so
+SP_STATIC_tomlc99 			= $$(SP_BDIR_$(1))/lib$(SP_LIB_NAME_$(1)).a
+#$(eval $(call shared_lib_tmpl,$(SP_LIB_NAME_tomlc99)))
+#$(eval $(call static_lib_tmpl,$(SP_LIB_NAME_tomlc99)))
