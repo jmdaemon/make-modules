@@ -45,6 +45,8 @@ $$(SP_BDIR_$(1)):
 clean-$(SP_TARGET_NAME_$(1)):
 	@echo "Removing $(SP_NAME_$(1)) build output"
 	$(CLEANUP) $$(SP_BOBJS_$(1))
+	$(CLEANUP) $(SP_SHARED_$(1))
+	$(CLEANUP) $(SP_STATIC_$(1))
 
 # Add clean rule to master, subproject clean targets
 CLEAN_TARGET 		+= clean-$(SP_TARGET_NAME_$(1))
