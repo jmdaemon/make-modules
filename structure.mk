@@ -18,7 +18,7 @@
 
 PATHS := src
 PATHT := test
-PATHB := build
+PATHB := build/make
 PATHI := include
 
 PATHD := $(PATHB)/depends
