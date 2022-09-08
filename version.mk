@@ -5,7 +5,7 @@ VERSION_PATCH = 0
 VS_SRC = include/version.h.in
 VS_OBJ = $(PATHD)/version.h
 
-version: $(VS_OBJ)
+version: $(PATHD) $(VS_OBJ)
 
 $(VS_OBJ): $(VS_SRC) Makefile
 	$(COPY) $(VS_SRC) $(VS_OBJ)
