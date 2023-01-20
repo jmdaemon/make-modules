@@ -8,6 +8,11 @@ SP_BSRCS_$(1) 	= $(addprefix $(SP_SRCD_$(1))/, $(SP_SRCS_$(1)))
 SP_BOBJS_$(1) 	= $(addprefix $$(SP_BDIR_$(1))/, $(SP_OBJS_$(1)))
 SP_BCFLAGS_$(1) = $(SP_FLAGS_$(1)) $(SP_INCS_$(1))
 
+#SP_LIB_NAME_$(1) = lib$(SP_TARGET_NAME_$(1))
+#SP_LIBFLAGS_$(1) = -fPIC -Wl,soname,$(LIBRARY_NAME)
+#SP_LIBFLAGS_$(1) = -fPIC -Wl,soname,$(SP_SHARED_$(1))
+SP_LIBFLAGS_$(1) = -fPIC -Wl,-soname,lib$(SP_TARGET_NAME_$(1)).$(SHARED_LIBRARY_EXT)
+
 # Subproject headers
 
 ifneq ($(SP_HDRD_$(1)),)
@@ -56,12 +61,12 @@ $(SP_TARGET_NAME_$(1)): $$(SP_BDIR_$(1)) $$(SP_BOBJS_$(1)) $(SP_SHARED_$(1)) $(S
 # Compiles and builds build/depends/log.c/log.o, depends on subproject srcs and headers
 $$(SP_BDIR_$(1))/%.o: $(SP_SRCD_$(1))/%.c $(SP_INCS_$(1))/%.h
 	@echo "Compiling $(SP_NAME_$(1)) sources"
-	$$(CC) -c -fPIC $(TARGET_FLAGS) $$(SP_BCFLAGS_$(1)) -o $$@ $$^
+	$$(CC) -c $$(SP_LIBFLAGS_$(1)) $(TARGET_FLAGS) $$(SP_BCFLAGS_$(1)) -o $$@ $$^
 
 # Compiles and builds build/depends/log.c/log.o, depends on subproject srcs
 $$(SP_BDIR_$(1))/%.o: $(SP_SRCD_$(1))/%.c
 	@echo "Compiling $(SP_NAME_$(1)) sources"
-	$$(CC) -c -fPIC $(TARGET_FLAGS) $$(SP_BCFLAGS_$(1)) -o $$@ $$^
+	$$(CC) -c $$(SP_LIBFLAGS_$(1)) $(TARGET_FLAGS) $$(SP_BCFLAGS_$(1)) -o $$@ $$^
 
 # Links and creates dynamic library: build/depends/$$(SP_NAME_$(1))/$$(SP_SHARED_$(1))
 $(SP_SHARED_$(1)): $$(SP_BOBJS_$(1))

@@ -13,7 +13,8 @@
 
 
 # Library compiler flags
-LIB_CFLAGS = -fPIC
+#LIB_CFLAGS = -fPIC
+LIB_CFLAGS = -fPIC -Wl,-soname,$(LIBRARY_NAME) 
 LIB_LDFLAGS = -shared
 
 PREFIX_LIB = lib
